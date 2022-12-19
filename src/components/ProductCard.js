@@ -1,7 +1,9 @@
-import {Button, Image, Text, TouchableOpacity, useWindowDimensions, View} from "react-native";
+import {Image, Text, useWindowDimensions, View} from "react-native";
 import {useCart} from "../context/CartContext";
 import {CartItemEntity} from "../model/CartItemEntity";
 import {getProductQuantityInCart} from "../helper/CartHelper";
+import CustomButton from "./CustomButton";
+import Styles from "../styles/Styles";
 
 const ProductCard = ({item}) => {
 
@@ -23,61 +25,27 @@ const ProductCard = ({item}) => {
 
 
     return (
-        <View style={{
-            width: (useWindowDimensions().width - 60) / 3,
-            alignItems: 'center',
-            borderColor: 'orange',
-            borderWidth: 1,
-            margin: 10,
-            borderRadius: 10,
-            elevation: 10,
-            shadowColor: 'black',
-            backgroundColor: 'white'
-        }}>
-            <Image style={{width: 100, height: 100}}
+        <View style={
+            {
+                ...Styles.ProductCardStyle.container,
+                width: (useWindowDimensions().width - 60) / 3,
+            }
+        }>
+            <Image style={Styles.ProductCardStyle.image}
                    source={{uri: item.image}}/>
-            <Text>{item.price} TL</Text>
-            <Text style={{
-                flex: 1,
-                flexWrap: 'wrap',
-                textAlign: 'center'
-            }}>{item.name}</Text>
+            <Text style={Styles.ProductCardStyle.price}>{item.price} TL</Text>
+            <Text style={Styles.ProductCardStyle.title}>{item.name}</Text>
 
             <View style={{flexDirection: 'row'}}>
                 {
                     productQuantityInCart > 0 &&
-                    <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                        <TouchableOpacity style={{
-                            backgroundColor: 'orange',
-                            width: 25,
-                            height: 25,
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}
-                                          onPress={handleDeleteButton}>
-                            <Text style={{fontSize: 19}}>-</Text>
-                        </TouchableOpacity>
-                        <Text style={{
-                            fontSize: 15,
-                            paddingLeft: 5,
-                            paddingRight: 5,
-                            textAlign: 'center'
-                        }}>{productQuantityInCart}</Text>
+                    <View style={Styles.ProductCardStyle.amount.container}>
+                        <CustomButton onPressCallback={handleDeleteButton} title={'-'}/>
+                        <Text style={Styles.ProductCardStyle.amount.title}>{productQuantityInCart}</Text>
                     </View>
                 }
-                <TouchableOpacity style={{
-                    backgroundColor: 'orange',
-                    width: 25,
-                    height: 25,
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }} onPress={handleAddButton}>
-                    <Text style={{fontSize: 19}}>+</Text>
-                </TouchableOpacity>
-
+                <CustomButton onPressCallback={handleAddButton} title={'+'}/>
             </View>
-
-
         </View>
     )
 }

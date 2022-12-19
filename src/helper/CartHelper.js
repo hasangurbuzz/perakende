@@ -3,7 +3,7 @@ export const getTotalPriceOfCart = (cart) => {
     for (let i = 0; i < cart.length; i++) {
         let currentItem = cart[i];
         let price = currentItem.product.price * currentItem.quantity;
-        totalPrice += price;
+        totalPrice += Number(price.toFixed(2));
     }
     return totalPrice;
 }

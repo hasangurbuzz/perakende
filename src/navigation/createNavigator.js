@@ -5,7 +5,6 @@ import ScreenConstants from "../constants/ScreenConstants";
 import {createStackNavigator} from "@react-navigation/stack";
 import CartButton from "../components/CartButton";
 import CartScreen from "../screens/CartScreen";
-import PaymentScreen from "../screens/PaymentScreen";
 
 const Stack = createStackNavigator();
 

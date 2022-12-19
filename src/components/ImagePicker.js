@@ -1,7 +1,7 @@
-import {Button, Image, Text, TouchableOpacity, View} from "react-native";
+import {Button, Image, View} from "react-native";
 import * as ImagePicker from 'expo-image-picker';
-import {useState} from "react";
-import {Picker} from "@react-native-picker/picker";
+import Styles from "../styles/Styles";
+
 
 const CustomImagePicker = ({image, setImage}) => {
 
@@ -14,7 +14,7 @@ const CustomImagePicker = ({image, setImage}) => {
                 quality: 1
             }
         )
-        if (!result.canceled){
+        if (!result.canceled) {
             setImage(result.assets[0].uri)
         }
     }
@@ -22,10 +22,11 @@ const CustomImagePicker = ({image, setImage}) => {
     return (
         <View>
             {image !== null &&
-                <Image style={{width: 200, height: 200}}
+                <Image style={Styles.ImagePickerStyle.preview}
                        source={{uri: image}}/>
             }
-            <Button title={'Yükle'}
+            <Button
+                title={'Yükle'}
                     onPress={handleImage}/>
         </View>);
 }

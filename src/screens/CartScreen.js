@@ -1,5 +1,4 @@
 import {View, Text, FlatList, TouchableOpacity} from "react-native";
-import List from "../components/List";
 import {useCart} from "../context/CartContext";
 import React from "react";
 import CartItem from "../components/CartItem";

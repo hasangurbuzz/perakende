@@ -2,6 +2,7 @@ import {Text, TouchableOpacity} from "react-native";
 import {useCart} from "../context/CartContext";
 import {getTotalPriceOfCart} from "../helper/CartHelper";
 import ScreenConstants from "../constants/ScreenConstants";
+import ButtonStyles from "../styles/ButtonStyles";
 
 const CartButton = ({navigation}) => {
 
@@ -14,13 +15,8 @@ const CartButton = ({navigation}) => {
         }
     }
     return (
-        <TouchableOpacity style={{
-            backgroundColor: 'orange',
-            padding: 10,
-            borderRadius: 5
-        }} onPress={navigateToCart}>
+        <TouchableOpacity style={ButtonStyles.CartButtonStyle} onPress={navigateToCart}>
             <Text>{totalPrice} TL</Text>
-
         </TouchableOpacity>
     )
 
