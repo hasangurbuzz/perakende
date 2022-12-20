@@ -1,8 +1,12 @@
 import {FlatList, Text, View} from "react-native";
 import ProductCard from "./ProductCard";
-import React, {forwardRef, useImperativeHandle} from "react";
+import React, {forwardRef, useImperativeHandle, useState} from "react";
+import CardList from "./CardList";
+import Styles from "../styles/Styles";
 
 const List = forwardRef(({DATA, handleScroll}, refer) => {
+
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useImperativeHandle(refer, () => ({
         scroll(index) {
@@ -10,46 +14,39 @@ const List = forwardRef(({DATA, handleScroll}, refer) => {
         }
     }))
 
-    return (
-        <View style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'space-between'
+    const _onViewableItemsChanged = React.useCallback(({viewableItems}) => {
+        setCurrentIndex(viewableItems[0].index)
+    }, []);
 
-        }}>
+    const _viewabilityConfig = {
+        itemVisiblePercentThreshold: 10
+    }
+
+    const _onMomentumScrollEnd = () => {
+        handleScroll(currentIndex)
+    }
+
+    const _renderItem = ({item}) => {
+        return (
+            <View style={Styles.CategorizedListStyle.item}>
+                <Text style={Styles.CategorizedListStyle.title}>{item}</Text>
+                <CardList DATA={DATA[item]}/>
+            </View>
+        )
+    }
+
+    return (
+        <View style={Styles.CategorizedListStyle.container}>
             <FlatList
+                onMomentumScrollEnd={_onMomentumScrollEnd}
+                onViewableItemsChanged={_onViewableItemsChanged}
+                viewabilityConfig={_viewabilityConfig}
                 keyExtractor={(item, index) => index.toString()}
-                onMomentumScrollEnd={
-                    (event) => {
-                        let index = Math.floor(
-                            Math.floor(event.nativeEvent.contentOffset.y) /
-                            Math.floor(240)
-                        );
-                        handleScroll(index)
-                    }
-                }
                 ref={(ref) => {
                     refer = ref;
                 }}
                 data={Object.keys(DATA)}
-                renderItem={({item}) => {
-                    return (
-                        <View style={{flex: 1}}>
-                            <Text style={{fontSize: 19, marginLeft:10}}>{item}</Text>
-                            <FlatList
-                                numColumns={3}
-                                data={DATA[item]}
-                                renderItem={({item}) => {
-                                    return (
-                                        <ProductCard item={item}/>
-                                    );
-                                }
-                                }
-                                keyExtractor={(item) => item.id}
-                            />
-                        </View>
-                    )
-                }}
+                renderItem={_renderItem}
             />
         </View>
     );

@@ -62,5 +62,19 @@ export default {
         preview: {
             width: 200, height: 200
         }
+    },
+    CategorizedListStyle: {
+        container: {
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flex: 1
+        },
+        item: {
+            flex: 1
+        },
+        title: {
+            fontSize: 19, marginLeft: 10
+        }
+
     }
 }
