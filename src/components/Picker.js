@@ -1,6 +1,6 @@
 import {Picker} from "@react-native-picker/picker";
-
 const CustomPicker = ({selectedValue, setSelectedValue, selectableValues}) => {
+
     return(
         <Picker
             selectedValue={selectedValue}

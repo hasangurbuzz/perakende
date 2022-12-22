@@ -1,6 +1,19 @@
+import CommonConstants from "../constants/CommonConstants";
+
 export const groupBy = (xs, key) => {
     return xs.reduce(function (rv, x) {
         (rv[x[key]] = rv[x[key]] || []).push(x);
         return rv;
     }, {});
 };
+
+export const separatePriceAndDecimal = (price) => {
+    price = price.toString();
+    return price.split('.');
+}
+
+export const mergePriceAndDecimal = (price, decimal) => {
+    price = price.toString().replace(/[^0-9]/g, '');
+    decimal = decimal.toString().replace(/[^0-9]/g, '');
+    return `${price}${CommonConstants.DOT}${decimal}`
+}

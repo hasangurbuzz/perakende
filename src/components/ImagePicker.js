@@ -1,19 +1,33 @@
-import {Button, Image, View} from "react-native";
+import {Button, Image, TouchableOpacity, View} from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import Styles from "../styles/Styles";
-
+import ImagePickerConstants from "../constants/ImagePickerConstants";
+import ImagePickerConfig from "../config/ImagePickerConfig";
+import {FontAwesome} from '@expo/vector-icons';
+import {Entypo} from '@expo/vector-icons';
+import IconButton from "./IconButton";
+import Icons from "../styles/Icons";
 
 const CustomImagePicker = ({image, setImage}) => {
 
-    const handleImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync(
-            {
-                mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [1, 1],
-                quality: 1
+
+    const handleImage = async (imageFrom) => {
+        let result;
+        switch (imageFrom) {
+            case ImagePickerConstants.FROM_CAMERA: {
+                result = await ImagePicker.launchCameraAsync(
+                    ImagePickerConfig
+                )
+                break
             }
-        )
+            case ImagePickerConstants.FROM_GALLERY: {
+                result = await ImagePicker.launchImageLibraryAsync(
+                    ImagePickerConfig
+                )
+                break
+            }
+        }
+
         if (!result.canceled) {
             setImage(result.assets[0].uri)
         }
@@ -25,9 +39,14 @@ const CustomImagePicker = ({image, setImage}) => {
                 <Image style={Styles.ImagePickerStyle.preview}
                        source={{uri: image}}/>
             }
-            <Button
-                title={'Yükle'}
-                    onPress={handleImage}/>
+            <View
+                style={{
+                    flexDirection: 'row',
+                    justifyContent:'space-around'
+            }}>
+                <IconButton icon={Icons.CAMERA} onPress={() => handleImage(ImagePickerConstants.FROM_CAMERA)}/>
+                <IconButton icon={Icons.PHOTO} onPress={() => handleImage(ImagePickerConstants.FROM_GALLERY)}/>
+            </View>
         </View>);
 }
 
