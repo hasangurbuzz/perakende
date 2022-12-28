@@ -7,11 +7,6 @@ export const groupBy = (xs, key) => {
     }, {});
 };
 
-export const separatePriceAndDecimal = (price) => {
-    price = price.toString();
-    return price.split('.');
-}
-
 export const mergePriceAndDecimal = (price, decimal) => {
     price = price.toString().replace(/[^0-9]/g, '');
     decimal = decimal.toString().replace(/[^0-9]/g, '');

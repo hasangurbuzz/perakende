@@ -1,6 +1,5 @@
 import CustomTextInput from "./CustomTextInput";
 import {Text, View} from "react-native";
-import {mergePriceAndDecimal, separatePriceAndDecimal} from "../../util/commonUtil";
 import React, {useState} from "react";
 import CurrencyConstants from "../../constants/CurrencyConstants";
 import CommonConstants from "../../constants/CommonConstants";
