@@ -6,6 +6,10 @@ import {createStackNavigator} from "@react-navigation/stack";
 import CartButton from "../components/CartButton";
 import CartScreen from "../screens/CartScreen";
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import SummaryScreen from "../screens/SummaryScreen";
+import {TouchableOpacity} from "react-native";
+import IconButton from "../components/IconButton";
+import Icons from "../../styles/Icons";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -33,6 +37,15 @@ const CustomNavigation = () => {
                         }
                     }}
                     component={CartScreen}
+                />
+                <Stack.Screen
+                    name={ScreenConstants.SummaryScreen.name}
+                    component={SummaryScreen}
+                    options={{
+                        title: ScreenConstants.SummaryScreen.title,
+                        headerShown: true
+                    }
+                    }
                 />
             </Stack.Navigator>
         </NavigationContainer>

@@ -18,3 +18,8 @@ export const formatPriceInput = (input) => {
     let onlyNumbers = removedFirstZero.replace(/[^0-9]/g, '');
     return onlyNumbers;
 }
+
+export const getCartItemPrice = (cartItem) => {
+    const productPrice = cartItem.product.price;
+    return cartItem.quantity * productPrice;
+}

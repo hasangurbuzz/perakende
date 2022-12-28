@@ -1,8 +1,10 @@
+import {getCartItemPrice} from "../util/commonUtil";
+
 export const getTotalPriceOfCart = (cart) => {
     let totalPrice = 0.0;
     for (let i = 0; i < cart.length; i++) {
         let currentItem = cart[i];
-        let price = currentItem.product.price * currentItem.quantity;
+        let price = getCartItemPrice(currentItem);
         totalPrice += Number(price.toFixed(2));
     }
     return totalPrice;

@@ -1,5 +1,5 @@
 import ActionType from "../model/ActionType";
-import {addToCart, getTotalPriceOfCart, removeItemFromCart} from "../helper/CartHelper";
+import {addToCart, removeItemFromCart} from "../helper/CartHelper";
 
 
 const cartReducer = (state, action) => {
@@ -9,6 +9,8 @@ const cartReducer = (state, action) => {
         }
         case ActionType.DELETE_FROM_CART:
             return removeItemFromCart(state, action.payload)
+        case ActionType.DELETE_ALL_FROM_CART:
+            return [];
     }
 }
 

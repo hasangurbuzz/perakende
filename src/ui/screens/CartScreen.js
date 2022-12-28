@@ -12,7 +12,7 @@ const CartScreen = ({navigation}) => {
     const isCartEmpty = state.length === 0;
 
     const handleConfirmationCart = () => {
-        navigation.navigate(ScreenConstants.PaymentScreen.name)
+        navigation.navigate(ScreenConstants.SummaryScreen.name)
     }
 
     return (

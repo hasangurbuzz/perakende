@@ -12,4 +12,10 @@ export const deleteProductFromCart = (dispatch) => {
     }
 }
 
-export const getAllActions = {addProductToCart, deleteProductFromCart}
+export const deleteAllProductsFromCart = (dispatch) => {
+    return () => {
+        dispatch({type: ActionType.DELETE_ALL_FROM_CART})
+    }
+}
+
+export const getAllActions = {addProductToCart, deleteProductFromCart, deleteAllProductsFromCart}
