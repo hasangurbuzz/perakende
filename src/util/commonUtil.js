@@ -17,3 +17,9 @@ export const mergePriceAndDecimal = (price, decimal) => {
     decimal = decimal.toString().replace(/[^0-9]/g, '');
     return `${price}${CommonConstants.DOT}${decimal}`
 }
+
+export const formatPriceInput = (input) => {
+    let removedFirstZero = input.replace(/^0/, "");
+    let onlyNumbers = removedFirstZero.replace(/[^0-9]/g, '');
+    return onlyNumbers;
+}

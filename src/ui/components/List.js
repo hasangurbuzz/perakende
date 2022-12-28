@@ -2,7 +2,7 @@ import {FlatList, Text, View} from "react-native";
 import ProductCard from "./ProductCard";
 import React, {forwardRef, useImperativeHandle, useState} from "react";
 import CardList from "./CardList";
-import Styles from "../styles/Styles";
+import Styles from "../../styles/Styles";
 
 const List = forwardRef(({DATA, handleScroll}, refer) => {
 

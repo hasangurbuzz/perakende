@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import {FlatList} from "react-native";
 import React from "react";
-import UIConstants from "../config/UIConfig";
+import UIConstants from "../../config/UIConfig";
 
 const CardList = ({DATA}) => {
 

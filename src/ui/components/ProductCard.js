@@ -1,9 +1,9 @@
 import {Image, Text, useWindowDimensions, View} from "react-native";
-import {useCart} from "../context/CartContext";
-import {CartItemEntity} from "../model/CartItemEntity";
-import {getProductQuantityInCart} from "../helper/CartHelper";
+import {useCart} from "../../context/CartContext";
+import {CartItemEntity} from "../../model/CartItemEntity";
+import {getProductQuantityInCart} from "../../helper/CartHelper";
 import CustomButton from "./CustomButton";
-import Styles from "../styles/Styles";
+import Styles from "../../styles/Styles";
 
 const ProductCard = ({item}) => {
 

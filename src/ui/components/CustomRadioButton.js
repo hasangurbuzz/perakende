@@ -1,5 +1,5 @@
 import {Text, TouchableOpacity} from "react-native";
-import ButtonStyles from "../styles/ButtonStyles";
+import ButtonStyles from "../../styles/ButtonStyles";
 
 const CustomRadioButton = ({category, setChosen, index, listIndex}) => {
     return (

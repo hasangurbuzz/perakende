@@ -1,11 +1,11 @@
 import {View} from "react-native";
-import {useProduct} from "../context/ProductContext";
+import {useProduct} from "../../context/ProductContext";
 import List from "../components/List";
 import React, {useEffect, useRef, useState} from "react";
-import {Product} from "../model/Product"
-import {getAllProducts} from "../data/client/ProductApi";
+import {Product} from "../../model/Product"
+import {getAllProducts} from "../../data/client/ProductApi";
 import CustomTab from "../components/CustomTab";
-import {groupByCategories} from "../helper/ProductHelper";
+import {groupByCategories} from "../../helper/ProductHelper";
 
 
 const HomeScreen = ({navigation}) => {

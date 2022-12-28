@@ -1,8 +1,8 @@
 import {Text, TouchableOpacity} from "react-native";
-import {useCart} from "../context/CartContext";
-import {getTotalPriceOfCart} from "../helper/CartHelper";
-import ScreenConstants from "../constants/ScreenConstants";
-import ButtonStyles from "../styles/ButtonStyles";
+import {useCart} from "../../context/CartContext";
+import {getTotalPriceOfCart} from "../../helper/CartHelper";
+import ScreenConstants from "../../constants/ScreenConstants";
+import ButtonStyles from "../../styles/ButtonStyles";
 
 const CartButton = ({navigation}) => {
 

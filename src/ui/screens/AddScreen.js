@@ -1,13 +1,15 @@
-import {Button, TextInput, View, Text} from "react-native";
+import {Button, View, Text, ToastAndroid} from "react-native";
 import {useState} from "react";
 
-import {useProduct} from "../context/ProductContext";
-import {Product} from "../model/Product";
+import {useProduct} from "../../context/ProductContext";
+import {Product} from "../../model/Product";
 import CustomPicker from "../components/Picker";
 import CustomImagePicker from "../components/ImagePicker";
-import {getAllCategories} from "../helper/ProductHelper";
+import {getAllCategories} from "../../helper/ProductHelper";
 import CustomTextInput from "../components/CustomTextInput";
 import PriceInput from "../components/PriceInput";
+import {formatPriceInput, mergePriceAndDecimal} from "../../util/commonUtil";
+import ScreenConstants from "../../constants/ScreenConstants";
 
 
 const AddScreen = ({navigation}) => {
@@ -16,7 +18,8 @@ const AddScreen = ({navigation}) => {
     const {state, addProduct} = useProduct();
     const categories = getAllCategories(state)
     const [productName, setProductName] = useState("");
-    const [price, setPrice] = useState("0.0");
+    const [price, setPrice] = useState(0);
+    const [decimal, setDecimal] = useState(0);
     const [imageUri, setImageUri] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
@@ -33,22 +36,32 @@ const AddScreen = ({navigation}) => {
         setImageUri(image)
     }
     const addProductHandler = () => {
+        let productPrice = mergePriceAndDecimal(price, decimal)
         addProduct(
-            new Product(productName, imageUri, selectedCategory, 200)
+            new Product(productName, imageUri, selectedCategory, Number(productPrice))
         )
+        setSelectedCategory(categories[0])
         setProductName("")
         setImageUri(null)
+        setPrice(0)
+        setDecimal(0)
+        ToastAndroid.show("Ürün başarıyla eklendi", ToastAndroid.SHORT)
+        navigation.navigate(ScreenConstants.HomeScreen);
     }
 
     const priceInputHandler = (priceInput) => {
-        let onlyNumbers = priceInput.replace(/[^0-9]/g, '');
-        setPrice(onlyNumbers.toString());
+        let price = formatPriceInput(priceInput)
+        setPrice(price);
+    }
+
+    const decimalInputHandler = (decimalInput) => {
+        let decimalPrice = formatPriceInput(decimalInput);
+        setDecimal(decimalPrice);
     }
 
 
-
     return (
-        <View style={{paddingTop: 20}}>
+        <View style={{paddingTop: 20, padding: 5}}>
             <CustomTextInput label={'Ürün Adı Giriniz'} input={productName} inputHandler={productNameInputHandler}/>
 
             <Text>Kategori Seçiniz</Text>
@@ -57,8 +70,8 @@ const AddScreen = ({navigation}) => {
                 setSelectedValue={categoryHandler}
                 selectableValues={categories}
             />
-            <Text>Ücret</Text>
-            <PriceInput price={price} priceInputHandler={priceInputHandler}/>
+            <PriceInput price={price} priceInputHandler={priceInputHandler} decimal={decimal}
+                        decimalInputHandler={decimalInputHandler}/>
             <Text>Ürüne Ait Görüntü Ekleyiniz</Text>
             <CustomImagePicker
                 image={imageUri}

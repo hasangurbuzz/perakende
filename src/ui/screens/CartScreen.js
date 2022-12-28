@@ -1,9 +1,9 @@
 import {View, Text, FlatList, TouchableOpacity} from "react-native";
-import {useCart} from "../context/CartContext";
+import {useCart} from "../../context/CartContext";
 import React from "react";
 import CartItem from "../components/CartItem";
 import DetailedList from "../components/DetailedList";
-import ScreenConstants from "../constants/ScreenConstants";
+import ScreenConstants from "../../constants/ScreenConstants";
 
 const CartScreen = ({navigation}) => {
 

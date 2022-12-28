@@ -1,6 +1,6 @@
 import React from "react";
 import {Provider as ProductProvider} from './src/context/ProductContext'
-import CustomNavigation from "./src/navigation/createNavigator";
+import CustomNavigation from "./src/ui/navigation/createNavigator";
 import {Provider as CartProvider} from "./src/context/CartContext";
 
 const App = () => {

@@ -1,6 +1,6 @@
 import {FlatList, View} from "react-native";
-import {useProduct} from "../context/ProductContext";
-import {getAllCategories} from "../helper/ProductHelper";
+import {useProduct} from "../../context/ProductContext";
+import {getAllCategories} from "../../helper/ProductHelper";
 import React, {forwardRef, useImperativeHandle} from "react";
 import CustomRadioButton from "./CustomRadioButton";
 

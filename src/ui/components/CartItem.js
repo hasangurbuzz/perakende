@@ -1,8 +1,8 @@
 import {Image, Text, View} from "react-native";
 import React from "react";
-import {useCart} from "../context/CartContext";
-import {CartItemEntity} from "../model/CartItemEntity";
-import Styles from "../styles/Styles";
+import {useCart} from "../../context/CartContext";
+import {CartItemEntity} from "../../model/CartItemEntity";
+import Styles from "../../styles/Styles";
 import CustomButton from "./CustomButton";
 
 const CartItem = ({cartItem}) => {

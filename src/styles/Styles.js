@@ -1,3 +1,5 @@
+import BorderStyles from "./BorderStyles";
+
 export default {
     ProductCardStyle: {
         container: {
@@ -59,6 +61,12 @@ export default {
         }
     },
     ImagePickerStyle: {
+        container: {
+            justifyContent:'center',
+            alignItems:'center',
+            marginTop: 10,
+            marginBottom: 10
+        },
         preview: {
             width: 200, height: 200
         }
@@ -75,6 +83,20 @@ export default {
         title: {
             fontSize: 19, marginLeft: 10
         }
-
+    },
+    CustomTextInputStyle: {
+        container: {
+            marginTop: 4,
+            marginBottom: 4
+        },
+        input: {
+            ...BorderStyles.PrimaryWithRadius,
+            padding: 4
+        }
+    },
+    PickerStyle: {
+        container: {
+            ...BorderStyles.PrimaryWithRadius
+        }
     }
 }
